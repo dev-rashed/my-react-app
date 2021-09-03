@@ -1,19 +1,14 @@
-import React from 'react';
-import './App.css';
+import { className } from "postcss-selector-parser";
+import { div } from "prelude-ls";
+import React from "react";
+import Person from "./components/Person";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      <Person/>
-    </div>
-  );
-}
-
-function Person() {
-  return (
-    <div>
-      <h2>I am person App</h2>
+      <Person name="Rashed" age="25"/>
+      <Person name="Rashul Islam" age="35"/>
     </div>
   );
 }
