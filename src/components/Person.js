@@ -29,23 +29,20 @@ class Person extends Component {
         { name: "Hello", age: "40" },
       ],
     });
-  }
+  };
+
+  allbooks = this.state.books.map( book => {
+    // console.log(book);
+    return(
+      <Book name={book.name} age={book.age}/>
+    )
+  });
 
   render() {
     return (
       <div className="app">
         <input type="text" onChange={this.changeWithInput} />
-        <Book
-          name={this.state.books[0].name}
-          age={this.state.books[0].age}
-          change={this.changeState.bind(this, "Thirty")}
-          inputName={this.changeWithInput}
-        />
-        <Book
-          name={this.state.books[1].name}
-          age={this.state.books[1].age}
-          change={this.changeState.bind(this, "Fourty")}
-        />
+        { this.allbooks }
       </div>
     );
   }
