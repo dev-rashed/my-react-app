@@ -1,45 +1,54 @@
 import React, { Component } from "react";
+import Book from "./Book";
 
 class Person extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      books: [
-        { Name: "PHP learning", price: "300tk" },
-        { Name: "Javascript Learning", price: "400tk" },
-        { Name: "Laravel Learning", price: "500tk" },
-      ],
-    };
   }
 
-  changeBookName = () => {
+  state = {
+    books: [
+      { name: "Rashedul Islam", age: "30" },
+      { name: "Rakibul Islam", age: "35" },
+    ],
+  };
+
+  changeState = (newAge) => {
     this.setState({
       books: [
-        { Name: "PHP learning 1", price: "300tk" },
-        { Name: "Javascript Learning 1", price: "400tk" },
-        { Name: "Laravel Learning", price: "500tk" },
+        { name: "HI, Changed", age: newAge },
+        { name: "Hello", age: newAge },
+      ],
+    });
+  };
+
+  changeWithInput = e => {
+    this.setState({
+      books: [
+        { name: e.target.value, age: "30" },
+        { name: "Hello", age: "40" },
       ],
     });
   }
 
   render() {
-    console.log(this.state);
     return (
-      <div>
-        <button onClick={this.changeBookName}>Change Name</button>
-        <h1>
-          Name: {this.state.books[0].Name} , Price: {this.state.books[0].price}
-        </h1>
-        <h1>
-          Name: {this.state.books[1].Name} , Price: {this.state.books[1].price}
-        </h1>
-        <h1>
-          Name: {this.state.books[2].Name} , Price: {this.state.books[2].price}
-        </h1>
+      <div className="app">
+        <input type="text" onChange={this.changeWithInput} />
+        <Book
+          name={this.state.books[0].name}
+          age={this.state.books[0].age}
+          change={this.changeState.bind(this, "Thirty")}
+          inputName={this.changeWithInput}
+        />
+        <Book
+          name={this.state.books[1].name}
+          age={this.state.books[1].age}
+          change={this.changeState.bind(this, "Fourty")}
+        />
       </div>
     );
   }
 }
- 
-export default Person;
 
+export default Person;
