@@ -7,8 +7,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <Person name="Rashed" age="25"/>
-      <Person name="Rashul Islam" age="35"/>
+      <Person />
     </div>
   );
 }
