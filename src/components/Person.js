@@ -8,41 +8,43 @@ class Person extends Component {
 
   state = {
     books: [
-      { name: "Rashedul Islam", age: "30" },
-      { name: "Rakibul Islam", age: "35" },
+      { id: 1, name: "Rashedul Islam", age: "30" },
+      { id: 2, name: "Rakibul Islam", age: "35" },
+      { id: 3, name: "Sunwarul Islam", age: "45" },
     ],
+    showBooks: true
   };
 
-  changeState = (newAge) => {
+  deleteBookState = (index) => {
+    // const books = this.state.books.map( item => item );
+    const books = [...this.state.books];
+    books.splice(index, 1);
     this.setState({
-      books: [
-        { name: "HI, Changed", age: newAge },
-        { name: "Hello", age: newAge },
-      ],
+      books: books,
     });
   };
 
-  changeWithInput = e => {
-    this.setState({
-      books: [
-        { name: e.target.value, age: "30" },
-        { name: "Hello", age: "40" },
-      ],
-    });
-  };
-
-  allbooks = this.state.books.map( book => {
-    // console.log(book);
-    return(
-      <Book name={book.name} age={book.age}/>
-    )
+  allbooks = this.state.books.map((book, index) => {
+    return (
+      <Book
+        name={book.name}
+        age={book.age}
+        delete={() => this.deleteBookState(index)}
+        key={book.id}
+      />
+    );
   });
+
+  toggleBooks = () => {
+    this.setState({ showBooks: !this.state.showBooks });
+  }
 
   render() {
     return (
       <div className="app">
-        <input type="text" onChange={this.changeWithInput} />
-        { this.allbooks }
+        <button onClick={this.toggleBooks}>Toggle Books</button>
+        <input type="text" />
+        {this.state.showBooks ? this.allbooks : null}
       </div>
     );
   }
