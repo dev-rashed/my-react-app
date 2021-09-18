@@ -24,27 +24,29 @@ class Person extends Component {
     });
   };
 
-  allbooks = this.state.books.map((book, index) => {
-    return (
-      <Book
-        name={book.name}
-        age={book.age}
-        delete={() => this.deleteBookState(index)}
-        key={book.id}
-      />
-    );
-  });
-
+  
   toggleBooks = () => {
     this.setState({ showBooks: !this.state.showBooks });
   }
-
+  
   render() {
+    
+    const allbooks = this.state.books.map((book, index) => {
+      return (
+        <Book
+          name={book.name}
+          age={book.age}
+          delete={() => this.deleteBookState(index)}
+          key={book.id}
+        />
+      );
+    });
+
     return (
       <div className="app">
         <button onClick={this.toggleBooks}>Toggle Books</button>
         <input type="text" />
-        {this.state.showBooks ? this.allbooks : null}
+        {this.state.showBooks ? allbooks : null}
       </div>
     );
   }
